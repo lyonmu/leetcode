@@ -1,4 +1,4 @@
-#include "utils.h"
+#include "utils/utils.h"
 
 int main() {
     int testArrays[10], length = arrLength(testArrays);
