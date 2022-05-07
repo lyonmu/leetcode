@@ -12,4 +12,11 @@
 
 #endif //LEETCODE_TIME0507_H
 
-int* twoSum(int* nums, int numsSize, int target, int* returnSize);
+typedef struct ListNode {
+    int val;
+    struct ListNode *next;
+} node, *Node;;
+
+int *twoSum(int *nums, int numsSize, int target, int *returnSize);
+
+struct ListNode *addTwoNumbers(struct ListNode *l1, struct ListNode *l2);

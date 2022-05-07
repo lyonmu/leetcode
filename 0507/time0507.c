@@ -27,3 +27,66 @@ int *twoSum(int *nums, int numsSize, int target, int *returnSize) {
     returnSize[0] = 0;
     return result;
 }
+
+/*
+ * 给你两个非空 的链表，表示两个非负的整数。它们每位数字都是按照逆序的方式存储的，并且每个节点只能存储一位数字。
+ * 请你将两个数相加，并以相同形式返回一个表示和的链表。
+ * */
+struct ListNode *addTwoNumbers(struct ListNode *l1, struct ListNode *l2) {
+    int tagValue = 0;
+    struct ListNode *result = NULL;
+    struct ListNode *tagNode = NULL;
+
+    struct ListNode *tagNode01 = l1;
+    struct ListNode *tagNode02 = l2;
+    struct ListNode *node = NULL;
+
+    while (tagNode01 != NULL || tagNode02 != NULL) {
+        if (result == NULL) {
+            node = (struct ListNode *) malloc(sizeof(struct ListNode));
+            node->val = (tagNode01->val + tagNode02->val + tagValue) % 10;
+            node->next = NULL;
+            tagValue = (tagNode01->val + tagNode02->val + tagValue) / 10;
+            result = node;
+            tagNode = node;
+            tagNode01 = tagNode01->next;
+            tagNode02 = tagNode02->next;
+        } else {
+            if (tagNode01 != NULL) {
+                if (tagNode02 != NULL) {
+                    node = (struct ListNode *) malloc(sizeof(struct ListNode));
+                    node->val = (tagNode01->val + tagNode02->val + tagValue) % 10;
+                    node->next = NULL;
+                    tagValue = (tagNode01->val + tagNode02->val + tagValue) / 10;
+                    tagNode01 = tagNode01->next;
+                    tagNode02 = tagNode02->next;
+                    tagNode->next = node;
+                    tagNode = node;
+                } else {
+                    node = (struct ListNode *) malloc(sizeof(struct ListNode));
+                    node->val = (tagNode01->val + tagValue) % 10;
+                    node->next = NULL;
+                    tagValue = (tagNode01->val + tagValue) / 10;
+                    tagNode01 = tagNode01->next;
+                    tagNode->next = node;
+                    tagNode = node;
+                }
+            } else {
+                node = (struct ListNode *) malloc(sizeof(struct ListNode));
+                node->val = (tagNode02->val + tagValue) % 10;
+                node->next = NULL;
+                tagValue = (tagNode02->val + tagValue) / 10;
+                tagNode02 = tagNode02->next;
+                tagNode->next = node;
+                tagNode = node;
+            }
+        }
+    }
+    if (tagValue != 0 && tagValue != NULL) {
+        node = (struct ListNode *) malloc(sizeof(struct ListNode));
+        node->val = tagValue;
+        node->next = NULL;
+        tagNode->next = node;
+    }
+    return result;
+}
