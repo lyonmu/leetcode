@@ -1,5 +1,6 @@
 #include "utils/utils.h"
 #include "0507/time0507.h"
+#include "0508/time0508.h"
 
 int main() {
     /*int testArrays[] = {3, 2, 4, 15};
@@ -9,7 +10,7 @@ int main() {
     traverseArrays(sum, 2);
     traverseArrays(testArrays, length);*/
 
-    struct ListNode *listNode1 = (struct ListNode *) malloc(sizeof(struct ListNode));
+    /*struct ListNode *listNode1 = (struct ListNode *) malloc(sizeof(struct ListNode));
     struct ListNode *listNode2 = (struct ListNode *) malloc(sizeof(struct ListNode));
     struct ListNode *node1 = (struct ListNode *) malloc(sizeof(struct ListNode));
     struct ListNode *node2 = (struct ListNode *) malloc(sizeof(struct ListNode));
@@ -41,7 +42,12 @@ int main() {
     node6->next = node8;
     node8->next = node9;
 
-    struct ListNode *pListNode = addTwoNumbers(listNode1, listNode2);
+    struct ListNode *pListNode = addTwoNumbers(listNode1, listNode2);*/
+
+    char str[] = "pwwkew";
+
+    const number = lengthOfLongestSubstring(str);
+    printf("不重复子串长度为:%d\n", number);
 
     return 0;
 }
