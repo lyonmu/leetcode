@@ -1,0 +1,4 @@
+[submodule "lib/uthash"]
+	path = lib/uthash
+	url = https://github.com/troydhanson/uthash.git
+	branch = master

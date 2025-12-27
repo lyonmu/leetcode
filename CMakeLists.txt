@@ -5,6 +5,9 @@ set(CMAKE_C_COMPILER /usr/bin/clang-20)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Werror")
 
+# uthash 头文件路径
+include_directories(lib/uthash/src)
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 # 收集所有题目源文件

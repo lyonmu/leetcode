@@ -12,11 +12,53 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include "uthash.h"
 
 // 内联宏替代 common.h
 #define MALLOC(type, n) ((type*)malloc(sizeof(type) * (n)))
 #define FREE(ptr) do { free(ptr); (ptr) = NULL; } while(0)
+
+/**
+ * 哈希表结构体
+ */
+typedef struct {
+    int key;              // 数组元素值
+    int val;              // 元素索引
+    UT_hash_handle hh;    // uthash 句柄
+} HashTable;
+
+/**
+ * 两数之和 - O(n) 时间复杂度
+ * 使用 uthash 哈希表存储已经遍历过的数字及其索引
+ */
+int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
+    HashTable* hashtable = NULL;
+
+    for (int i = 0; i < numsSize; i++) {
+        int complement = target - nums[i];
+        HashTable* entry;
+
+        // 查找补数是否在哈希表中
+        HASH_FIND_INT(hashtable, &complement, entry);
+        if (entry != NULL) {
+            int* result = MALLOC(int, 2);
+            result[0] = entry->val;
+            result[1] = i;
+            *returnSize = 2;
+            HASH_CLEAR(hh, hashtable);
+            return result;
+        }
+
+        // 将当前数字存入哈希表
+        entry = MALLOC(HashTable, 1);
+        entry->key = nums[i];
+        entry->val = i;
+        HASH_ADD_INT(hashtable, key, entry);
+    }
+
+    *returnSize = 0;
+    return NULL;
+}
 
 // 内联 swap 函数
 static inline void swap(int* a, int* b) {
@@ -24,44 +66,11 @@ static inline void swap(int* a, int* b) {
     *a = *b;
     *b = tmp;
 }
-
 /**
- * 哈希表解法 - O(n) 时间复杂度
- * 使用哈希表存储已经遍历过的数字及其索引
+ * 两数之和 - O(n log n) 时间复杂度
+ * 先排序再使用双指针法
  */
-int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
-    // 使用简单的数组作为哈希表（因为题目范围较小）
-    // 键：数值，值：索引
-    int hash[20000] = {0};  // 假设数值范围在 -10000 到 9999
-    int offset = 10000;
-
-    for (int i = 0; i < numsSize; i++) {
-        int complement = target - nums[i];
-        int idx = complement + offset;
-
-        // 检查补数是否在哈希表中
-        if (idx >= 0 && idx < 20000 && hash[idx] != 0) {
-            int* result = MALLOC(int, 2);
-            result[0] = hash[idx] - 1;  // 减1因为初始化为0
-            result[1] = i;
-            *returnSize = 2;
-            return result;
-        }
-
-        // 将当前数字存入哈希表
-        hash[nums[i] + offset] = i + 1;
-    }
-
-    // 没有找到答案
-    *returnSize = 0;
-    return NULL;
-}
-
-/**
- * 双指针解法（需要先排序）- O(nlogn) 时间复杂度
- * 注意：排序会改变原始数组，所以需要返回原始索引
- */
-int* twoSumTwoPointers(int* nums, int numsSize, int target, int* returnSize) {
+int* twoSumWithDoublePoint(int* nums, int numsSize, int target, int* returnSize) {
     int* indices = MALLOC(int, numsSize);
     for (int i = 0; i < numsSize; i++) {
         indices[i] = i;
@@ -108,9 +117,10 @@ int* twoSumTwoPointers(int* nums, int numsSize, int target, int* returnSize) {
 }
 
 /**
- * 暴力解法 - O(n^2) 时间复杂度
+ * 两数之和 - O(n^2) 时间复杂度
+ * 使用双重循环暴力破解
  */
-int* twoSumBruteForce(int* nums, int numsSize, int target, int* returnSize) {
+int* twoSumWithDoubleFor(int* nums, int numsSize, int target, int* returnSize) {
     for (int i = 0; i < numsSize - 1; i++) {
         for (int j = i + 1; j < numsSize; j++) {
             if (nums[i] + nums[j] == target) {
