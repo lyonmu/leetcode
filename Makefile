@@ -7,7 +7,8 @@ build:
 	cd build && cmake .. && make
 
 run: build
-	./build/bin/p0001_two_sum
+# 	./build/bin/p0001_two_sum
+	./build/bin/p0002_add_two_numbers
 
 clean:
 	rm -rf build
@@ -15,5 +16,4 @@ clean:
 help:
 	@echo "LeetCode C Project"
 	@echo "  make build  - Build all problems"
-	@echo "  make run    - Run p0001_two_sum"
 	@echo "  make clean  - Clean build directory"

@@ -19,15 +19,16 @@ leetcode/
 
 ## 已完成题目
 
-| 编号 | 题目 | 难度 | 状态 |
-|------|------|------|------|
-| 1 | [两数之和](https://leetcode.cn/problems/two-sum/) | 简单 | ✅ |
+| 编号 | 题目                                                     | 难度 | 状态 |
+| ---- | -------------------------------------------------------- | ---- | ---- |
+| 1    | [两数之和](https://leetcode.cn/problems/two-sum)         | 简单 | ✅   |
+| 2    | [两数相加](https://leetcode.cn/problems/add-two-numbers) | 中等 | ✅   |
 
 ## 构建与运行
 
 ### 环境要求
 
-- **编译器**: clang-20
+- **编译器**: clang
 - **标准**: C11
 
 ### 使用 Makefile 构建
@@ -36,9 +37,6 @@ leetcode/
 # 构建所有题目
 make build
 
-# 运行 p0001_two_sum
-make run
-
 # 清理构建文件
 make clean
 ```
@@ -46,9 +44,8 @@ make clean
 ### 手动构建
 
 ```bash
-rm -rf build && mkdir build && cd build
-cmake -DCMAKE_C_COMPILER=/usr/bin/clang-20 ..
-make
+git submodule update --init --recursive
+make build
 ```
 
 运行特定题目：
@@ -66,6 +63,6 @@ make
 ## 添加新题目
 
 1. 在 `src/problems/` 目录下创建 `p####_name.c` 文件
-2. 文件名格式: `p` + 4位题目编号 + 下划线 + 题目名
+2. 文件名格式: `p` + 4 位题目编号 + 下划线 + 题目名
 3. 每个文件必须包含独立的 `main()` 函数用于测试
 4. 重新运行 `make build` 即可自动编译新题目
