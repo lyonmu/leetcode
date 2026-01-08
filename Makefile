@@ -8,7 +8,8 @@ build:
 
 run: build
 # 	./build/bin/p0001_two_sum
-	./build/bin/p0002_add_two_numbers
+# 	./build/bin/p0002_add_two_numbers
+	./build/bin/p0003_longest_substring_without_repeating_characters
 
 clean:
 	rm -rf build
