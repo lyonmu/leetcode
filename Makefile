@@ -7,9 +7,7 @@ build:
 	cd build && cmake .. && make
 
 run: build
-# 	./build/bin/p0001_two_sum
-# 	./build/bin/p0002_add_two_numbers
-	./build/bin/p0003_longest_substring_without_repeating_characters
+	./build/bin/p0005_longest_palindromic_substring
 
 clean:
 	rm -rf build

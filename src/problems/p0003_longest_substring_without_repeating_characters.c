@@ -24,31 +24,32 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// 滑动窗口法 核心思想 是使用两个指针维护一个窗口，记录当前不含重复字符的子串
 int lengthOfLongestSubstring(char *s) {
 
   if (s == NULL || *s == '\0') {
     return 0;
   }
+  int max = 0;
+  int left = 0; // 左指针
 
-  // 记录每个 ASCII 字符最后出现的位置，初始化为 -1
-  int last[256];
-  for (int i = 0; i < 256; i++) {
-    last[i] = -1;
+  // 声明并初始化一个数组，记录字符上次出现的位置
+  int index[256];
+
+  for (size_t i = 0; i < 256; i++) {
+    index[i] = -1;
   }
-
-  int max = 0;      // 最大长度
-  int left = 0;     // 窗口左边界
 
   for (int right = 0; s[right] != '\0'; right++) {
     unsigned char c = (unsigned char)s[right];
 
     // 如果字符在当前窗口内已存在，移动左边界
-    if (last[c] >= left) {
-      left = last[c] + 1;
+    if (index[c] > left) {
+      left = index[c];
     }
 
     // 更新字符最后出现的位置
-    last[c] = right;
+    index[c] = right + 1;
 
     // 更新最大长度
     int current = right - left + 1;

@@ -19,10 +19,13 @@ leetcode/
 
 ## 已完成题目
 
-| 编号 | 题目                                                     | 难度 | 状态 |
-| ---- | -------------------------------------------------------- | ---- | ---- |
-| 1    | [两数之和](https://leetcode.cn/problems/two-sum)         | 简单 | ✅   |
-| 2    | [两数相加](https://leetcode.cn/problems/add-two-numbers) | 中等 | ✅   |
+| 编号 | 题目                                                                         | 难度 | 状态 |
+| ---- | ---------------------------------------------------------------------------- | ---- | ---- |
+| 1    | [两数之和](https://leetcode.cn/problems/two-sum)                             | 简单 | ✅   |
+| 2    | [两数相加](https://leetcode.cn/problems/add-two-numbers)                     | 中等 | ✅   |
+| 3    | [无重复字符的最长子串](https://leetcode.cn/problems/longest-substring-without-repeating-characters) | 中等 | ✅   |
+| 4    | [寻找两个正序数组的中位数](https://leetcode.cn/problems/median-of-two-sorted-arrays) | 困难 | ✅   |
+| 5    | [最长回文子串](https://leetcode.cn/problems/longest-palindromic-substring)   | 中等 | ✅   |
 
 ## 构建与运行
 
