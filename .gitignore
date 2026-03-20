@@ -74,3 +74,4 @@ openspec/
 CLAUDE.md
 .cache/
 build/
+.alma-snapshots/
